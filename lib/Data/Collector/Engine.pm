@@ -11,10 +11,20 @@ has 'connected' => (
     default   => 0,
 );
 
+has 'test' => ( is => 'ro', isa => 'Str', default => '/usr/bin/test' );
+has 'echo' => ( is => 'ro', isa => 'Str', default => '/bin/echo'     );
+
 # basic overridable methods
-sub run        { die 'No default run method' }
-sub connect    {1}
-sub disconnect {1}
+sub run         { die 'No default run method' }
+sub connect     {1}
+sub disconnect  {1}
+sub file_exists {
+    my ( $self, $file ) = @_;
+    my $test = $self->test;
+    my $echo = $self->echo;
+    my $cmd  = "$test -f $file ; $echo \$?";
+    return $self->run($cmd);
+}
 
 __PACKAGE__->meta->make_immutable;
 1;
@@ -108,6 +118,21 @@ If you do not provide a run method, your engine will die, literally! :)
 =head2 disconnect
 
 A I<disconnect> is attempted if the I<connected> boolean is set.
+
+=head2 file_exists
+
+Tries to run C<test -f file ; echo $?> to check if a file exists. You can
+subclass it if you're doing it differently (or don't want to support it).
+
+    $engine->check_files('file');
+
+You can also change the path of C<test> and C<echo> from C</usr/bin/test> and
+C</bin/echo> (respectively) to whatever you want using I<engine_args>.
+
+    engine_args => {
+        test => '/usr/local/bin/test',
+        echo => '/usr/local/bin/echo',
+    }
 
 =head1 AUTHOR
 
