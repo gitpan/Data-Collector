@@ -11,9 +11,10 @@ use List::Util 'first';
 has 'raw_data' => ( is => 'rw', isa => 'Str', lazy_build => 1 );
 has 'engine'   => ( is => 'ro', isa => 'Object'  );
 
-my $REGISTRY = Set::Object->new();
+my $REGISTRY     = Set::Object->new();
+my $INFO_MODULES = Set::Object->new();
 
-sub register_keys {
+sub register {
     my $class = shift;
     my @keys  = @_;
 
@@ -27,9 +28,8 @@ sub register_keys {
     }
 }
 
-sub unregister_keys {
+sub unregister {
     my @keys = @_;
-
     $REGISTRY->remove($_) for @keys;
 }
 
@@ -40,8 +40,13 @@ sub all  { die 'No default all method' }
 sub load {1}
 
 sub BUILD {
-    my $self = shift;
-    $self->load();
+    my $self  = shift;
+    my $class = ref $self;
+
+    if ( ! $INFO_MODULES->contains($class) ) {
+        $INFO_MODULES->insert($class);
+        $self->load();
+    }
 }
 
 __PACKAGE__->meta->make_immutable;
@@ -58,7 +63,7 @@ Data::Collector::Info - A base class for information classes
     package Data::Collector::Info::Bamba;
     use Moose;
     extends 'Data::Collector::Info';
-    sub load { Data::Collector::Info->register_keys('bamba') }
+    sub load { Data::Collector::Info->register('bamba') }
 
     sub _build_raw_data {
         my $self   = shift;
@@ -97,18 +102,18 @@ information. This is set by L<Data::Collector> on initialize.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 register_keys
+=head2 register
 
 This method registers keys in the registry. You can provide as many as you want.
 
 It should be called using the class, not any object, as such:
 
-    Data::Collector::Info->register_keys('bamba_count');
+    Data::Collector::Info->register('bamba_count');
 
 Now if anyone else will try to register another key (such as another bamba
 module), L<Data::Collector::Info> will prevent it from happening.
 
-=head2 unregister_keys
+=head2 unregister
 
 This method can be used to remove keys from the registry. However, B<refrain>
 from using this method in order to provide two collections. The reason is that

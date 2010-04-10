@@ -6,9 +6,8 @@ use MooseX::StrictConstructor;
 use Module::Pluggable::Object;
 use namespace::autoclean;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
-has 'collected'     => ( is => 'rw', isa => 'Bool',    default => 0          );
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
 has 'format_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 has 'engine'        => ( is => 'ro', isa => 'Str',     default => 'OpenSSH'  );
@@ -42,9 +41,6 @@ sub collect {
     my $self   = shift;
     my $engine = $self->engine_object;
 
-    # no double collecting
-    $self->collected and croak "Can't collect twice, buddy\n" .
-                               'Try clear_registry()';
     # lazy calling the connect
     $engine->connected or $engine->connect;
 
@@ -62,8 +58,6 @@ sub collect {
 
     $engine->connected and $engine->disconnect;
 
-    $self->collected(1);
-
     return $self->serialize;
 }
 
@@ -80,11 +74,7 @@ sub serialize {
     return $serializer->serialize( $self->data );
 }
 
-sub clear_registry {
-    my $self = shift;
-    Data::Collector::Info->clear_registry;
-    $self->collected(0);
-}
+sub clear_registry { Data::Collector::Info->clear_registry }
 
 __PACKAGE__->meta->make_immutable;
 1;
@@ -98,7 +88,7 @@ Facter
 
 =head1 VERSION
 
-Version 0.04
+Version 0.05
 
 =head1 SYNOPSIS
 
@@ -177,19 +167,6 @@ This attributes holds the engine object. This should probably be left for
 either testing or advanced usage. Please refrain from playing with it if
 you're unsure how it works.
 
-=head2 collected(Bool)
-
-This is boolean attribute to indicate whether or not a collection has taken
-place.
-
-When running a collection twice, you will without a doubt trigger the registry
-safe mechanism by trying to register every Info module again. In order to
-provide a proper error msg indicting this, the C<collected> attribute is marked
-after a collection.
-
-If you clean the registry properly (using L<Data::Collector::Info>'s
-C<clear_registry>), it will also clean up this boolean.
-
 =head1 SUBROUTINES/METHODS
 
 =head2 collect
@@ -212,11 +189,11 @@ Clears the information registry. The registry keeps all the keys of different
 information modules. The registry makes sure information modules don't step on
 each other.
 
-However, this can prevent you from running collect more than once since it will
-try to reregister all the information modules.
+This is merely a helper method. It simply runs:
 
-This method clears the registry B<and> clears out the C<collected> boolean,
-allowing you to run I<collect> again.
+    Data::Collector::Info->clear_registry;
+
+This is actually only a mere helper method.
 
 =head1 AUTHOR
 
