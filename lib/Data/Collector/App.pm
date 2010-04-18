@@ -1,6 +1,8 @@
 package Data::Collector::App;
 
 use Moose;
+use List::MoreUtils 'none';
+use Module::Pluggable::Object;
 use MooseX::Types::Path::Class 'File';
 use namespace::autoclean;
 
@@ -19,11 +21,57 @@ has 'output' => (
     predicate => 'has_output',
 );
 
-has [ qw/ engine_args format_args / ] => (
+has [ qw/ engine_args format_args info_args / ] => (
     is      => 'ro',
     isa     => 'HashRef',
     default => sub { {} },
 );
+
+my @classes = Module::Pluggable::Object->new(
+    search_path => 'Data::Collector::Info',
+    require     => 1, # can use Class::MOP::load_class instead
+)->plugins;
+
+my @ignore_classes = qw/
+    Data::Collector::Commands
+    Data::Collector::Info
+/;
+
+foreach my $class (@classes) {
+    foreach my $attribute ( $class->meta->get_all_attributes ) {
+        my $name    = $attribute->name;
+        my $assoc   = $attribute->associated_class->name;
+        my $package = $attribute->definition_context->{'package'};
+
+        if ( none { $package eq $_ } @ignore_classes ) {
+            my @levels = split /\:\:/, $class;
+            my $level  = lc $levels[-1];
+            my $attr   = "info_${level}_${name}";
+
+            if ( __PACKAGE__->meta->get_attribute($attr) ) {
+                die "Already have attribute by the name of $attr\n";
+            }
+
+            __PACKAGE__->meta->add_attribute(
+                $attribute->clone( name => $attr )
+            );
+        }
+    }
+}
+
+sub BUILD {
+    my $self  = shift;
+    my $regex = qr/^info_(.+?)_(.+)$/;
+
+    foreach my $attr ( $self->meta->get_attribute_list ) {
+        if ( $attr =~ $regex ) {
+            # bad jojo magambo
+            if ( exists $self->{$attr} ) {
+                $self->info_args->{$1}{$2} = $self->{$attr};
+            }
+        }
+    }
+}
 
 sub run {
     my $self      = shift;
@@ -32,6 +80,7 @@ sub run {
         engine_args => $self->engine_args,
         format      => $self->format,
         format_args => $self->format_args,
+        info_args   => $self->info_args,
     );
 
     my $data = $collector->collect;
@@ -93,6 +142,12 @@ Type of serialization (C<JSON> or C<YAML>, for example).
 
 Any additional arguments the serializer might want.
 
+=head2 info_args
+
+Any additional arguments the Info module might want.
+
+You generally don't want to play with it, trust me.
+
 =head2 output
 
 A file to output to. If one is not provided, it will output the serialized
@@ -115,6 +170,11 @@ reading a configuration file (if the correct argument for it is provided).
 Runs the application: starts a new collector, collects the informtion and -
 depending on the options - either outputs the result to the screen or to a
 file.
+
+=head2 BUILD
+
+Subroutine run after initialization. Used to create the C<info_args> attribute
+for the main C<Data::Collector>.
 
 =head1 AUTHOR
 

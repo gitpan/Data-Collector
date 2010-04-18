@@ -6,12 +6,13 @@ use MooseX::StrictConstructor;
 use Module::Pluggable::Object;
 use namespace::autoclean;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
 has 'format_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 has 'engine'        => ( is => 'ro', isa => 'Str',     default => 'OpenSSH'  );
 has 'engine_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
+has 'info_args'     => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
 has 'engine_object' => (
     is         => 'ro',
     isa        => 'Object',
@@ -50,7 +51,14 @@ sub collect {
     );
 
     foreach my $class ( $object->plugins ) {
-        my $info = $class->new( engine => $self->engine_object );
+        my @levels = split /\:\:/, $class;
+        my $level  = lc $levels[-1];
+
+        my $info = $class->new(
+            engine => $self->engine_object,
+            %{ $self->info_args->{ lc $level } },
+        );
+
         my %data = %{ $info->all() };
 
         $self->add_data(%data);
@@ -88,7 +96,7 @@ Facter
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =head1 SYNOPSIS
 
@@ -154,6 +162,18 @@ The default is JSON.
 
 Much like I<engine_args>, you can supply any additional arguments that will
 reach the serializer's I<new> method.
+
+=head2 info_args(HashRef)
+
+Much like I<engine_args> and I<info_args>, you can supply any additional
+arguments that should go to specific Info module's I<new> method.
+
+    info_args => {
+        IFaces => {
+            ignore_ip    => ['127.0.0.1'],
+            ignore_iface => ['lo'],
+        },
+    },
 
 =head2 data(HashRef)
 
