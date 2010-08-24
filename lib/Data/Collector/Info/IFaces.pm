@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Info::IFaces;
+BEGIN {
+  $Data::Collector::Info::IFaces::VERSION = '0.07';
+}
+# ABSTRACT: Fetch machine interfaces information
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -62,16 +67,17 @@ sub ifaces {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::Info::IFaces - Fetch machine interfaces information
 
-This info module fetches information about a machine's internet interfaces using
-C<ifconfig>. This should not work on Windows.
+=head1 VERSION
 
-The key this module takes in the registry is I<ifaces>.
+version 0.07
 
 =head1 ATTRIBUTES
 
@@ -96,5 +102,22 @@ Runs C<ifaces> method and returns their result in a unified hashref.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+
+This info module fetches information about a machine's internet interfaces using
+C<ifconfig>. This should not work on Windows.
+
+The key this module takes in the registry is I<ifaces>.
 

@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Commands;
+BEGIN {
+  $Data::Collector::Commands::VERSION = '0.07';
+}
+# ABSTRACT: A role for commands to be used to collect data
 
 use Moose::Role;
 use namespace::autoclean;
@@ -24,11 +29,17 @@ has 'commands' => (
 
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::Commands - A role for commands to be used to collect data
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -45,6 +56,8 @@ on the configuration of the remote (or local) shell.
 The idea is to make it easier for you to configure where your paths are, in case
 the default one don't work (such as the difference between FreeBSD and
 GNU/Linux.
+
+=head1 NAME
 
 =head1 ATTRIBUTES
 
@@ -65,4 +78,17 @@ Gets a command's explicit path.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+

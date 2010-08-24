@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Info;
+BEGIN {
+  $Data::Collector::Info::VERSION = '0.07';
+}
+# ABSTRACT: A base class for information classes
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -41,10 +46,11 @@ sub info_keys { die 'No default info_keys method' }
 sub all       { die 'No default all method'       }
 
 sub BUILD {
-    my $self  = shift;
-    my $class = ref $self;
+    my $self      = shift;
+    my $class     = ref $self;
+    my $contained = $INFO_MODULES->contains($class);
 
-    if ( ! $INFO_MODULES->contains($class) ) {
+    if ( ! $contained ) {
         $INFO_MODULES->insert($class);
 
         my $keys = $self->info_keys;
@@ -57,11 +63,17 @@ sub BUILD {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::Info - A base class for information classes
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -168,5 +180,17 @@ and use that instead - for the sake of clarity if not anything else.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 

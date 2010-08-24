@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Engine::Local;
+BEGIN {
+  $Data::Collector::Engine::Local::VERSION = '0.07';
+}
+# ABSTRACT: An engine for Data::Collector that runs local commands
 
 use Moose;
 use IPC::System::Simple 'capture';
@@ -18,12 +23,17 @@ sub run {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
-Data::Collector::Engine::Local - An engine for Data::Collector that runs local
-commands
+Data::Collector::Engine::Local - An engine for Data::Collector that runs local commands
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -41,5 +51,17 @@ This functions runs the given command locally using IPC::System::Simple.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 

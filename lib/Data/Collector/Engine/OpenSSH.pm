@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Engine::OpenSSH;
+BEGIN {
+  $Data::Collector::Engine::OpenSSH::VERSION = '0.07';
+}
+# ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
 use Moose;
 use Net::OpenSSH;
@@ -18,13 +23,14 @@ has 'host'   => (
 
 has 'user'   => ( is => 'rw', isa => 'Str', predicate => 'has_user'   );
 has 'passwd' => ( is => 'rw', isa => 'Str', predicate => 'has_passwd' );
+has 'port'   => ( is => 'rw', isa => 'Int', predicate => 'has_port' );
 has 'ssh'    => ( is => 'rw', isa => 'Net::OpenSSH' );
 
 sub connect {
     my $self = shift;
     my %data = ();
 
-    foreach my $attr ( qw/ user passwd / ) {
+    foreach my $attr ( qw/ user passwd port / ) {
         my $predicate = "has_$attr";
         $self->$predicate and $data{$attr} = $self->$attr;
     }
@@ -41,15 +47,34 @@ sub run {
     return $self->ssh->capture($cmd);
 }
 
+sub pipe {
+    my ( $self, $cmd, $params ) = @_;
+    my ( $in, $out, $pid ) = $self->ssh->open2($cmd);
+
+    print {$in} $params;
+    close $in;
+
+    my $output;
+    while ( <$out> ) { $output .= $_; }
+    close $out;
+
+    return $output;
+}
+
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
-Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector
-utilizing Net::OpenSSH
+Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -95,7 +120,24 @@ This method creates the Net::OpenSSH object and connects to the host.
 This functions runs the given command on the host using ssh and returns the
 results.
 
+=head2 pipe
+
+Pipes your request to the command. Gets the command to run, returns the output
+of that command.
+
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 

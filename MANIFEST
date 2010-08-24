@@ -1,5 +1,12 @@
 Build.PL
 Changes
+LICENSE
+MANIFEST
+META.yml
+Makefile.PL
+README
+bin/data-collector
+dist.ini
 lib/Data/Collector.pm
 lib/Data/Collector/App.pm
 lib/Data/Collector/Commands.pm
@@ -17,11 +24,7 @@ lib/Data/Collector/Serializer/JSON.pm
 lib/Data/Collector/Serializer/SimpleXML.pm
 lib/Data/Collector/Serializer/SmartXML.pm
 lib/Data/Collector/Serializer/YAML.pm
-Makefile.PL
-MANIFEST			This list of files
-META.yml
-README
-bin/data-collector
+t/00-compile.t
 t/00-load.t
 t/collector/collect.t
 t/collector/nonexistent_engine.t
@@ -30,10 +33,15 @@ t/engine/basic.t
 t/engine/openssh.t
 t/engine/subclassing.t
 t/info/base.t
+t/info/cpu.t
+t/info/externalip.t
+t/info/ifaces.t
 t/info/memory.t
+t/info/os.t
 t/info/reserved_keys.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+t/release-pod-coverage.t
+t/release-pod-syntax.t
 t/serializers/json.t
-LICENSE

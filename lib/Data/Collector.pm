@@ -1,12 +1,16 @@
+use strictures 1;
 package Data::Collector;
+BEGIN {
+  $Data::Collector::VERSION = '0.07';
+}
+# ABSTRACT: Collect information from multiple sources
 
 use Carp;
 use Moose;
 use MooseX::StrictConstructor;
+use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
 use namespace::autoclean;
-
-our $VERSION = '0.06';
 
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
 has 'format_args'   => ( is => 'ro', isa => 'HashRef', default => sub { {} } );
@@ -27,6 +31,27 @@ has 'data' => (
     handles => { add_data => 'set' },
 );
 
+has 'infos' => (
+    is       => 'ro',
+    isa      => 'Set::Object',
+    coerce   => 1,
+    default  => sub { Set::Object->new },
+);
+
+has 'exclude_infos' => (
+    is       => 'ro',
+    isa      => 'Set::Object',
+    coerce   => 1,
+    default  => sub { Set::Object->new },
+);
+
+has 'os' => (
+    is        => 'rw',
+    isa       => 'Str',
+    trigger   => sub { shift->load_os(@_) },
+    predicate => 'has_os',
+);
+
 sub _build_engine_object {
     my $self  = shift;
     my $type  = $self->engine;
@@ -38,12 +63,28 @@ sub _build_engine_object {
     return "Data::Collector::Engine::$type"->new( %{ $self->engine_args } );
 }
 
+sub BUILD {
+    my $self = shift;
+
+    if ( ! $self->has_os ) {
+        # default if not run by App.pm
+        $self->os('CentOS');
+    }
+}
+
+sub load_os {
+    my ( $self, $new_os, $old_os ) = @_;
+}
+
 sub collect {
     my $self   = shift;
     my $engine = $self->engine_object;
 
     # lazy calling the connect
-    $engine->connected or $engine->connect;
+    if ( ! $engine->connected ) {
+        $engine->connect;
+        $engine->connected(1);
+    }
 
     my $object = Module::Pluggable::Object->new(
         search_path => 'Data::Collector::Info',
@@ -51,22 +92,44 @@ sub collect {
     );
 
     foreach my $class ( $object->plugins ) {
-        my @levels = split /\:\:/, $class;
-        my $level  = lc $levels[-1];
-
-        my $info = $class->new(
-            engine => $self->engine_object,
-            %{ $self->info_args->{ lc $level } },
-        );
-
-        my %data = %{ $info->all() };
-
-        $self->add_data(%data);
+        $self->load_info($class);
     }
 
-    $engine->connected and $engine->disconnect;
+    if ( $engine->connected ) {
+        $engine->disconnect;
+        $engine->connected(0);
+    }
 
     return $self->serialize;
+}
+
+sub load_info {
+    my ( $self, $class ) = @_;
+
+    my @levels = split /\:\:/, $class;
+    my $level  = $levels[-1];
+
+    if ( $self->infos->members ) {
+        # we got specific infos requested
+        if ( ! $self->infos->has($level) ) {
+            # this info is not on the infos list
+            return;
+        }
+    }
+
+    if ( $self->exclude_infos->has($level) ) {
+        # this info is on the exclusion list
+        return;
+    }
+
+    my $info = $class->new(
+        engine => $self->engine_object,
+        %{ $self->info_args->{ lc $level } },
+    );
+
+    my %data = %{ $info->all() };
+
+    $self->add_data(%data);
 }
 
 sub serialize {
@@ -87,21 +150,22 @@ sub clear_registry { Data::Collector::Info->clear_registry }
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
-Data::Collector - Collect information from multiple sources - like Puppet's
-Facter
+Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
-Version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
-This module collects various information from multiple sources and makes it
-available in different formats.
+Data::Collector collects various information from multiple sources and makes it
+available in different formats, similar to Puppet's Facter.
 
     use Data::Collector;
 
@@ -113,6 +177,9 @@ available in different formats.
 
     my %data = $collector->collect;
     ...
+
+Data::Collector uses I<Info>s to determine what information is collected. It
+then uses I<Serialize>rs to serialize that information.
 
 An important concept in Data::Collector is that it does not use any modules to
 fetch the information, only shell commands. This might seem like a pain at first
@@ -215,9 +282,17 @@ This is merely a helper method. It simply runs:
 
 This is actually only a mere helper method.
 
-=head1 AUTHOR
+=head2 BUILD
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+Internal initialize subroutine that sets the default OS to CentOS.
+
+=head2 load_info
+
+Loads all the infos available.
+
+=head2 load_os
+
+Currently not being used.
 
 =head1 BUGS
 
@@ -253,15 +328,19 @@ L<http://search.cpan.org/dist/Data-Collector/>
 
 =back
 
-=head1 ACKNOWLEDGEMENTS
+=head1 AUTHOR
 
-=head1 LICENSE AND COPYRIGHT
+  Sawyer X <xsawyerx@cpan.org>
 
-Copyright 2010 Sawyer X.
+=head1 COPYRIGHT AND LICENSE
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+This software is copyright (c) 2010 by Sawyer X.
 
-See http://dev.perl.org/licenses/ for more information.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 

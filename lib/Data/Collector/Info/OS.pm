@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Info::OS;
+BEGIN {
+  $Data::Collector::Info::OS::VERSION = '0.07';
+}
+# ABSTRACT: Fetch machine OS information
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -20,6 +25,7 @@ has 'types' => (
             file    => '/etc/redhat-release',
             version => sub {
                 my ( $self, $data ) = @_;
+                $data   ||= q{};
                 my $regex = qr/
                     ^CentOS \s release \s
                     (\d+) (\.\d+)? (?: \s \(Final\) )?
@@ -68,11 +74,19 @@ sub all {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::Info::OS - Fetch machine OS information
+
+=head1 VERSION
+
+version 0.07
+
+=head1 DESCRIPTION
 
 This info module fetches information about a machine's OS details using version
 files such as C</etc/redhat-release> for Red Hat or CentOS.
@@ -95,5 +109,17 @@ Fetches and returns the details in a unified hashref.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 

@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::App;
+BEGIN {
+  $Data::Collector::App::VERSION = '0.07';
+}
+# ABSTRACT: An application implementation for Data::Collector
 
 use Moose;
 use List::MoreUtils 'none';
@@ -14,6 +19,7 @@ has '+configfile' => ( default => '/etc/data_collector.yaml' );
 
 has 'engine' => ( is => 'ro', isa => 'Str', default => 'OpenSSH' );
 has 'format' => ( is => 'ro', isa => 'Str', default => 'JSON'    );
+has 'os'     => ( is => 'ro', isa => 'Str', default => 'CentOS'  );
 
 has 'output' => (
     is        => 'ro',
@@ -76,6 +82,7 @@ sub BUILD {
 sub run {
     my $self      = shift;
     my $collector = Data::Collector->new(
+        os          => $self->os,
         engine      => $self->engine,
         engine_args => $self->engine_args,
         format      => $self->format,
@@ -98,13 +105,17 @@ sub run {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::App - An application implementation for Data::Collector
 
-Using this implementation, one can write an application.
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -116,6 +127,8 @@ Using this implementation, one can write an application.
 This module integrates all the checks and logics of an application.
 
 It supports getopt command line parsing and optional configuration files.
+
+Using this implementation, one can write an application.
 
 =head1 ATTRIBUTES
 
@@ -178,4 +191,17 @@ for the main C<Data::Collector>.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+

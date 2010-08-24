@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Serializer::SimpleXML;
+BEGIN {
+  $Data::Collector::Serializer::SimpleXML::VERSION = '0.07';
+}
+# ABSTRACT: A XML::Simple serializer for Data::Collector
 
 use Moose;
 use XML::Simple;
@@ -14,12 +19,19 @@ sub serialize {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
-Data::Collector::Serializer::SimpleXML - A XML::Simple serializer for
-Data::Collector
+Data::Collector::Serializer::SimpleXML - A XML::Simple serializer for Data::Collector
+
+=head1 VERSION
+
+version 0.07
+
+=head1 DESCRIPTION
 
 Utilizes L<XML::Simple>.
 
@@ -31,4 +43,17 @@ Gets data, serializes it and returns it.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
+

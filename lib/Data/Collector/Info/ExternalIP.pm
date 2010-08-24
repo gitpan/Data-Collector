@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Info::ExternalIP;
+BEGIN {
+  $Data::Collector::Info::ExternalIP::VERSION = '0.07';
+}
+# ABSTRACT: Fetch machine's external IP information
 
 use Carp;
 use Moose;
@@ -23,11 +28,11 @@ sub _build_raw_data {
     my $curl = $self->get_command('curl');
     my $data = $self->engine->run("$curl $url 2>/dev/null");
 
-    if ( $data =~ /(\d+\.\d+\.\d+\.\d+)/ ) {
+    if ( $data and $data =~ /(\d+\.\d+\.\d+\.\d+)/ ) {
         return $1;
     }
 
-    croak q{Coulnd't find IP in output};
+    croak q{Couldn't find IP in output};
 }
 
 sub all {
@@ -40,11 +45,19 @@ sub all {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::Info::ExternalIP - Fetch machine's external IP information
+
+=head1 VERSION
+
+version 0.07
+
+=head1 DESCRIPTION
 
 This info module fetches the external IP of a machine using the DynDNS URL
 L<http://checkip.dyndns.org>.
@@ -83,5 +96,17 @@ Returns a hashref with the key and the request result.
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 

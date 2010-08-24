@@ -1,4 +1,9 @@
+use strictures 1;
 package Data::Collector::Engine;
+BEGIN {
+  $Data::Collector::Engine::VERSION = '0.07';
+}
+# ABSTRACT: A base class for collecting engines
 
 use Moose;
 use MooseX::StrictConstructor;
@@ -39,11 +44,17 @@ sub run_if_exists {
 __PACKAGE__->meta->make_immutable;
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
 Data::Collector::Engine - A base class for collecting engines
+
+=head1 VERSION
+
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -150,5 +161,17 @@ A helper hybrid between C<file_exists> and C<run> to ease a common idiom:
 
 =head1 AUTHOR
 
-Sawyer X, C<< <xsawyerx at cpan.org> >>
+  Sawyer X <xsawyerx@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2010 by Sawyer X.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
+
+=cut
+
+
+__END__
 
