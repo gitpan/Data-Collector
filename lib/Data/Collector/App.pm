@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::App;
 BEGIN {
-  $Data::Collector::App::VERSION = '0.07';
+  $Data::Collector::App::VERSION = '0.08';
 }
 # ABSTRACT: An application implementation for Data::Collector
 
@@ -115,7 +115,7 @@ Data::Collector::App - An application implementation for Data::Collector
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 

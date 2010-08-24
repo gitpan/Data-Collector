@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Serializer::YAML;
 BEGIN {
-  $Data::Collector::Serializer::YAML::VERSION = '0.07';
+  $Data::Collector::Serializer::YAML::VERSION = '0.08';
 }
 # ABSTRACT: A YAML serializer for Data::Collector
 
@@ -29,7 +29,7 @@ Data::Collector::Serializer::YAML - A YAML serializer for Data::Collector
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 

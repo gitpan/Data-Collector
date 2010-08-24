@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info::Memory;
 BEGIN {
-  $Data::Collector::Info::Memory::VERSION = '0.07';
+  $Data::Collector::Info::Memory::VERSION = '0.08';
 }
 # ABSTRACT: Fetch machine RAM information
 
@@ -53,7 +53,7 @@ Data::Collector::Info::Memory - Fetch machine RAM information
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 

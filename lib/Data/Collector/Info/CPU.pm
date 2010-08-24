@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info::CPU;
 BEGIN {
-  $Data::Collector::Info::CPU::VERSION = '0.07';
+  $Data::Collector::Info::CPU::VERSION = '0.08';
 }
 # ABSTRACT: Fetch machine CPU information
 
@@ -67,7 +67,7 @@ Data::Collector::Info::CPU - Fetch machine CPU information
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 

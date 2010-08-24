@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector;
 BEGIN {
-  $Data::Collector::VERSION = '0.07';
+  $Data::Collector::VERSION = '0.08';
 }
 # ABSTRACT: Collect information from multiple sources
 
@@ -160,7 +160,7 @@ Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 

@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info::OS;
 BEGIN {
-  $Data::Collector::Info::OS::VERSION = '0.07';
+  $Data::Collector::Info::OS::VERSION = '0.08';
 }
 # ABSTRACT: Fetch machine OS information
 
@@ -33,9 +33,26 @@ has 'types' => (
 
                 if ( $data =~ $regex ) {
                     $self->os_version( $2 ? $1 . $2 : $1 );
+                    return 1;
                 }
+            },
+        },
 
-                return 1;
+        'Fedora' => {
+            name    => 'Linux',
+            file    => '/etc/redhat-release',
+            version => sub {
+                my ( $self, $data ) = @_;
+                $data   ||= q{};
+                my $regex = qr/
+                    ^Fedora \s release \s
+                    (\d+) (\.\d+)?
+                /x;
+
+                if ( $data =~ $regex ) {
+                    $self->os_version( $2 ? $1 . $2 : $1 );
+                    return 1;
+                }
             },
         },
     } },
@@ -84,7 +101,7 @@ Data::Collector::Info::OS - Fetch machine OS information
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 

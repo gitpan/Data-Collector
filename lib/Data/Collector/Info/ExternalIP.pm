@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info::ExternalIP;
 BEGIN {
-  $Data::Collector::Info::ExternalIP::VERSION = '0.07';
+  $Data::Collector::Info::ExternalIP::VERSION = '0.08';
 }
 # ABSTRACT: Fetch machine's external IP information
 
@@ -55,7 +55,7 @@ Data::Collector::Info::ExternalIP - Fetch machine's external IP information
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 DESCRIPTION
 

@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info::IFaces;
 BEGIN {
-  $Data::Collector::Info::IFaces::VERSION = '0.07';
+  $Data::Collector::Info::IFaces::VERSION = '0.08';
 }
 # ABSTRACT: Fetch machine interfaces information
 
@@ -77,7 +77,7 @@ Data::Collector::Info::IFaces - Fetch machine interfaces information
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 ATTRIBUTES
 

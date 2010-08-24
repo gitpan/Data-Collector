@@ -53,7 +53,7 @@ my %WriteMakefileArgs = (
     'namespace::autoclean' => '0',
     'strictures' => '1'
   },
-  'VERSION' => '0.07',
+  'VERSION' => '0.08',
   'test' => {
     'TESTS' => 't/*.t t/collector/*.t t/engine/*.t t/info/*.t t/serializers/*.t'
   }

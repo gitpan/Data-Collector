@@ -23,7 +23,7 @@ my %module_build_args = (
     'Sawyer X <xsawyerx@cpan.org>'
   ],
   'dist_name' => 'Data-Collector',
-  'dist_version' => '0.07',
+  'dist_version' => '0.08',
   'license' => 'perl',
   'module_name' => 'Data::Collector',
   'recommends' => {},
