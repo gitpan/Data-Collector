@@ -34,7 +34,6 @@ my %WriteMakefileArgs = (
     'Data::Dumper' => '0',
     'IPC::System::Simple' => '0',
     'JSON' => '0',
-    'LWP::UserAgent' => '0',
     'List::MoreUtils' => '0',
     'List::Util' => '0',
     'Module::Pluggable::Object' => '0',
@@ -47,13 +46,11 @@ my %WriteMakefileArgs = (
     'MooseX::Types::Set::Object' => '0',
     'Net::OpenSSH' => '0',
     'Set::Object' => '0',
-    'XML::Simple' => '0',
-    'XML::Smart' => '0',
     'YAML' => '0',
     'namespace::autoclean' => '0',
     'strictures' => '1'
   },
-  'VERSION' => '0.08',
+  'VERSION' => '0.09',
   'test' => {
     'TESTS' => 't/*.t t/collector/*.t t/engine/*.t t/info/*.t t/serializers/*.t'
   }

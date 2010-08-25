@@ -14,11 +14,6 @@ lib/Data/Collector/Engine.pm
 lib/Data/Collector/Engine/Local.pm
 lib/Data/Collector/Engine/OpenSSH.pm
 lib/Data/Collector/Info.pm
-lib/Data/Collector/Info/CPU.pm
-lib/Data/Collector/Info/ExternalIP.pm
-lib/Data/Collector/Info/IFaces.pm
-lib/Data/Collector/Info/Memory.pm
-lib/Data/Collector/Info/OS.pm
 lib/Data/Collector/Serializer/DataDumper.pm
 lib/Data/Collector/Serializer/JSON.pm
 lib/Data/Collector/Serializer/SimpleXML.pm
@@ -33,15 +28,9 @@ t/engine/basic.t
 t/engine/openssh.t
 t/engine/subclassing.t
 t/info/base.t
-t/info/cpu.t
-t/info/externalip.t
-t/info/ifaces.t
-t/info/memory.t
-t/info/os.t
 t/info/reserved_keys.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
-t/release-pod-coverage.t
 t/release-pod-syntax.t
 t/serializers/json.t

@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Engine::OpenSSH;
 BEGIN {
-  $Data::Collector::Engine::OpenSSH::VERSION = '0.08';
+  $Data::Collector::Engine::OpenSSH::VERSION = '0.09';
 }
 # ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
@@ -24,12 +24,21 @@ has 'host'   => (
 has 'user'   => ( is => 'rw', isa => 'Str', predicate => 'has_user'   );
 has 'passwd' => ( is => 'rw', isa => 'Str', predicate => 'has_passwd' );
 has 'port'   => ( is => 'rw', isa => 'Int', predicate => 'has_port' );
-has 'ssh'    => ( is => 'rw', isa => 'Net::OpenSSH' );
+has 'ssh'    => (
+    is         => 'ro',
+    isa        => 'Net::OpenSSH',
+    lazy_build => 1,
+);
+
+sub _build_ssh {
+    my $self = shift;
+
+    return $self->connect();
+}
 
 sub connect {
     my $self = shift;
     my %data = ();
-
     foreach my $attr ( qw/ user passwd port / ) {
         my $predicate = "has_$attr";
         $self->$predicate and $data{$attr} = $self->$attr;
@@ -38,7 +47,7 @@ sub connect {
     my $ssh = Net::OpenSSH->new( $self->host, %data );
 
     $ssh->error and die "OpenSSH Engine connect failed: " . $ssh->error;
-    $self->ssh($ssh);
+    return $ssh;
 }
 
 sub run {
@@ -74,7 +83,7 @@ Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector utilizi
 
 =head1 VERSION
 
-version 0.08
+version 0.09
 
 =head1 SYNOPSIS
 
