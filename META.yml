@@ -13,7 +13,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.31
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.101880, CPAN::Meta::Converter version 2.101610'
+generated_by: 'Dist::Zilla version 4.102340, CPAN::Meta::Converter version 2.101591'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -37,6 +37,7 @@ requires:
   Net::OpenSSH: 0
   Set::Object: 0
   YAML: 0
+  indirect: 0
   namespace::autoclean: 0
   strictures: 1
-version: 0.09
+version: 0.10

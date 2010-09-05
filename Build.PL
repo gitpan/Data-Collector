@@ -23,7 +23,7 @@ my %module_build_args = (
     'Sawyer X <xsawyerx@cpan.org>'
   ],
   'dist_name' => 'Data-Collector',
-  'dist_version' => '0.09',
+  'dist_version' => '0.10',
   'license' => 'perl',
   'module_name' => 'Data::Collector',
   'recommends' => {},
@@ -46,6 +46,7 @@ my %module_build_args = (
     'Net::OpenSSH' => '0',
     'Set::Object' => '0',
     'YAML' => '0',
+    'indirect' => '0',
     'namespace::autoclean' => '0',
     'strictures' => '1'
   },

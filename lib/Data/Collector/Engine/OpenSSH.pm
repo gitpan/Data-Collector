@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Engine::OpenSSH;
 BEGIN {
-  $Data::Collector::Engine::OpenSSH::VERSION = '0.09';
+  $Data::Collector::Engine::OpenSSH::VERSION = '0.10';
 }
 # ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
@@ -83,7 +83,7 @@ Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector utilizi
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 SYNOPSIS
 

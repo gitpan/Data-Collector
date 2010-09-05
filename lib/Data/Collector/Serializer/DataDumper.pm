@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Serializer::DataDumper;
 BEGIN {
-  $Data::Collector::Serializer::DataDumper::VERSION = '0.09';
+  $Data::Collector::Serializer::DataDumper::VERSION = '0.10';
 }
 # ABSTRACT: A Data::Dumper serializer for Data::Collector
 
@@ -29,7 +29,7 @@ Data::Collector::Serializer::DataDumper - A Data::Dumper serializer for Data::Co
 
 =head1 VERSION
 
-version 0.09
+version 0.10
 
 =head1 DESCRIPTION
 

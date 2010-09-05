@@ -47,10 +47,11 @@ my %WriteMakefileArgs = (
     'Net::OpenSSH' => '0',
     'Set::Object' => '0',
     'YAML' => '0',
+    'indirect' => '0',
     'namespace::autoclean' => '0',
     'strictures' => '1'
   },
-  'VERSION' => '0.09',
+  'VERSION' => '0.10',
   'test' => {
     'TESTS' => 't/*.t t/collector/*.t t/engine/*.t t/info/*.t t/serializers/*.t'
   }
