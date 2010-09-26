@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Engine;
 BEGIN {
-  $Data::Collector::Engine::VERSION = '0.10';
+  $Data::Collector::Engine::VERSION = '0.11';
 }
 # ABSTRACT: A base class for collecting engines
 
@@ -54,7 +54,7 @@ Data::Collector::Engine - A base class for collecting engines
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 

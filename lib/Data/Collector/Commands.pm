@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Commands;
 BEGIN {
-  $Data::Collector::Commands::VERSION = '0.10';
+  $Data::Collector::Commands::VERSION = '0.11';
 }
 # ABSTRACT: A role for commands to be used to collect data
 
@@ -39,7 +39,7 @@ Data::Collector::Commands - A role for commands to be used to collect data
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 

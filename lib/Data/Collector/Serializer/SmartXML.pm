@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Serializer::SmartXML;
 BEGIN {
-  $Data::Collector::Serializer::SmartXML::VERSION = '0.10';
+  $Data::Collector::Serializer::SmartXML::VERSION = '0.11';
 }
 # ABSTRACT: A XML::Smart serializer for Data::Collector
 
@@ -35,7 +35,7 @@ Data::Collector::Serializer::SmartXML - A XML::Smart serializer for Data::Collec
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 DESCRIPTION
 

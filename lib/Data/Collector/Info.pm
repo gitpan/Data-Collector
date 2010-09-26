@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info;
 BEGIN {
-  $Data::Collector::Info::VERSION = '0.10';
+  $Data::Collector::Info::VERSION = '0.11';
 }
 # ABSTRACT: A base class for information classes
 
@@ -73,7 +73,7 @@ Data::Collector::Info - A base class for information classes
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 

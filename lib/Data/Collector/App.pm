@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::App;
 BEGIN {
-  $Data::Collector::App::VERSION = '0.10';
+  $Data::Collector::App::VERSION = '0.11';
 }
 # ABSTRACT: An application implementation for Data::Collector
 
@@ -15,7 +15,21 @@ use Data::Collector;
 
 with qw/ MooseX::SimpleConfig MooseX::Getopt::Dashes /;
 
-has '+configfile' => ( default => '/etc/data_collector.yaml' );
+has '+configfile' => (
+    isa     => 'Maybe[MooseX::Types::Path::Class::File]',
+    default => sub {
+        my @files = (
+            file( File::HomeDir->my_home, '.data_collector.yaml' ),
+            '/etc/data_collector.yaml',
+        );
+
+        foreach my $file (@files) {
+            -e $file && -r $file and return file($file);
+        }
+
+        return;
+    },
+);
 
 has 'engine' => ( is => 'ro', isa => 'Str', default => 'OpenSSH' );
 has 'format' => ( is => 'ro', isa => 'Str', default => 'JSON'    );
@@ -115,7 +129,7 @@ Data::Collector::App - An application implementation for Data::Collector
 
 =head1 VERSION
 
-version 0.10
+version 0.11
 
 =head1 SYNOPSIS
 
