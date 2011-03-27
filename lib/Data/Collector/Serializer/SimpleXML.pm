@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Serializer::SimpleXML;
 BEGIN {
-  $Data::Collector::Serializer::SimpleXML::VERSION = '0.11';
+  $Data::Collector::Serializer::SimpleXML::VERSION = '0.12';
 }
 # ABSTRACT: A XML::Simple serializer for Data::Collector
 
@@ -29,7 +29,7 @@ Data::Collector::Serializer::SimpleXML - A XML::Simple serializer for Data::Coll
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 DESCRIPTION
 

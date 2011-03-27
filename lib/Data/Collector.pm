@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector;
 BEGIN {
-  $Data::Collector::VERSION = '0.11';
+  $Data::Collector::VERSION = '0.12';
 }
 # ABSTRACT: Collect information from multiple sources
 
@@ -129,7 +129,7 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    $self->add_data(%data);
+    %data and $self->add_data(%data);
 }
 
 sub serialize {
@@ -160,7 +160,7 @@ Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 SYNOPSIS
 

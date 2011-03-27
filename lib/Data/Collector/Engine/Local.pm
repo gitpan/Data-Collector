@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Engine::Local;
 BEGIN {
-  $Data::Collector::Engine::Local::VERSION = '0.11';
+  $Data::Collector::Engine::Local::VERSION = '0.12';
 }
 # ABSTRACT: An engine for Data::Collector that runs local commands
 
@@ -33,7 +33,7 @@ Data::Collector::Engine::Local - An engine for Data::Collector that runs local c
 
 =head1 VERSION
 
-version 0.11
+version 0.12
 
 =head1 SYNOPSIS
 
