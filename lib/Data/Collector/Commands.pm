@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Commands;
-BEGIN {
-  $Data::Collector::Commands::VERSION = '0.12';
+{
+  $Data::Collector::Commands::VERSION = '0.13';
 }
 # ABSTRACT: A role for commands to be used to collect data
 
@@ -39,7 +39,7 @@ Data::Collector::Commands - A role for commands to be used to collect data
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -78,11 +78,11 @@ Gets a command's explicit path.
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

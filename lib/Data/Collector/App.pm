@@ -1,11 +1,13 @@
 use strictures 1;
 package Data::Collector::App;
-BEGIN {
-  $Data::Collector::App::VERSION = '0.12';
+{
+  $Data::Collector::App::VERSION = '0.13';
 }
 # ABSTRACT: An application implementation for Data::Collector
 
 use Moose;
+use File::Spec;
+use File::HomeDir;
 use List::MoreUtils 'none';
 use Module::Pluggable::Object;
 use MooseX::Types::Path::Class 'File';
@@ -19,7 +21,7 @@ has '+configfile' => (
     isa     => 'Maybe[MooseX::Types::Path::Class::File]',
     default => sub {
         my @files = (
-            file( File::HomeDir->my_home, '.data_collector.yaml' ),
+            File::Spec->catfile( File::HomeDir->my_home, '.data_collector.yaml' ),
             '/etc/data_collector.yaml',
         );
 
@@ -129,7 +131,7 @@ Data::Collector::App - An application implementation for Data::Collector
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -205,11 +207,11 @@ for the main C<Data::Collector>.
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

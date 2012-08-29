@@ -7,13 +7,15 @@ build_requires:
   File::Temp: 0
   Module::Build: 0.3601
   Sub::Override: 0
-  Test::Exception: 0
+  Test::Fatal: 0
   Test::More: 0
+  strict: 0
+  warnings: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200000, CPAN::Meta::Converter version 2.110580'
+generated_by: 'Dist::Zilla version 4.300013, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,7 +23,10 @@ meta-spec:
 name: Data-Collector
 requires:
   Carp: 0
+  Class::Load: 0
   Data::Dumper: 0
+  File::HomeDir: 0
+  File::Spec: 0
   IPC::System::Simple: 0
   JSON: 0
   List::MoreUtils: 0
@@ -40,4 +45,4 @@ requires:
   indirect: 0
   namespace::autoclean: 0
   strictures: 1
-version: 0.12
+version: 0.13

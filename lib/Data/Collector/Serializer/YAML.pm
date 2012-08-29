@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Serializer::YAML;
-BEGIN {
-  $Data::Collector::Serializer::YAML::VERSION = '0.12';
+{
+  $Data::Collector::Serializer::YAML::VERSION = '0.13';
 }
 # ABSTRACT: A YAML serializer for Data::Collector
 
@@ -29,7 +29,7 @@ Data::Collector::Serializer::YAML - A YAML serializer for Data::Collector
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 DESCRIPTION
 
@@ -43,11 +43,11 @@ Gets data, serializes it and returns it.
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

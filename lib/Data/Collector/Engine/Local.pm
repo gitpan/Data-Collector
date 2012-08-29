@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Engine::Local;
-BEGIN {
-  $Data::Collector::Engine::Local::VERSION = '0.12';
+{
+  $Data::Collector::Engine::Local::VERSION = '0.13';
 }
 # ABSTRACT: An engine for Data::Collector that runs local commands
 
@@ -33,7 +33,7 @@ Data::Collector::Engine::Local - An engine for Data::Collector that runs local c
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -51,11 +51,11 @@ This functions runs the given command locally using IPC::System::Simple.
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

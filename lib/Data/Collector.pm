@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector;
-BEGIN {
-  $Data::Collector::VERSION = '0.12';
+{
+  $Data::Collector::VERSION = '0.13';
 }
 # ABSTRACT: Collect information from multiple sources
 
@@ -10,6 +10,7 @@ use Moose;
 use MooseX::StrictConstructor;
 use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
+use Class::Load 'try_load_class';
 use namespace::autoclean;
 
 has 'format'        => ( is => 'ro', isa => 'Str',     default => 'JSON'     );
@@ -28,7 +29,6 @@ has 'data' => (
     isa     => 'HashRef',
     traits  => ['Hash'],
     default => sub { {} },
-    handles => { add_data => 'set' },
 );
 
 has 'infos' => (
@@ -57,10 +57,10 @@ sub _build_engine_object {
     my $type  = $self->engine;
     my $class = "Data::Collector::Engine::$type";
 
-    eval "use $class";
-    $@ && die "Can't load engine '$class': $@";
+    my ( $res, $reason ) = try_load_class($class);
+    $res or die "Can't load engine: $reason\n";
 
-    return "Data::Collector::Engine::$type"->new( %{ $self->engine_args } );
+    return $class->new( %{ $self->engine_args } );
 }
 
 sub BUILD {
@@ -129,7 +129,10 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    %data and $self->add_data(%data);
+    $self->data(
+        %{ $self->data },
+        %data,
+    );
 }
 
 sub serialize {
@@ -160,7 +163,7 @@ Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -330,11 +333,11 @@ L<http://search.cpan.org/dist/Data-Collector/>
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

@@ -2,7 +2,7 @@ NAME
     Data::Collector - Collect information from multiple sources
 
 VERSION
-    version 0.12
+    version 0.13
 
 SYNOPSIS
     Data::Collector collects various information from multiple sources and
@@ -152,10 +152,10 @@ SUPPORT
         <http://search.cpan.org/dist/Data-Collector/>
 
 AUTHOR
-      Sawyer X <xsawyerx@cpan.org>
+    Sawyer X <xsawyerx@cpan.org>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2010 by Sawyer X.
+    This software is copyright (c) 2012 by Sawyer X.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.

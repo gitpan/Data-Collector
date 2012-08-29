@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Info;
-BEGIN {
-  $Data::Collector::Info::VERSION = '0.12';
+{
+  $Data::Collector::Info::VERSION = '0.13';
 }
 # ABSTRACT: A base class for information classes
 
@@ -73,7 +73,7 @@ Data::Collector::Info - A base class for information classes
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -180,11 +180,11 @@ and use that instead - for the sake of clarity if not anything else.
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.

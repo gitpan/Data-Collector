@@ -1,7 +1,7 @@
 use strictures 1;
 package Data::Collector::Engine;
-BEGIN {
-  $Data::Collector::Engine::VERSION = '0.12';
+{
+  $Data::Collector::Engine::VERSION = '0.13';
 }
 # ABSTRACT: A base class for collecting engines
 
@@ -54,7 +54,7 @@ Data::Collector::Engine - A base class for collecting engines
 
 =head1 VERSION
 
-version 0.12
+version 0.13
 
 =head1 SYNOPSIS
 
@@ -161,11 +161,11 @@ A helper hybrid between C<file_exists> and C<run> to ease a common idiom:
 
 =head1 AUTHOR
 
-  Sawyer X <xsawyerx@cpan.org>
+Sawyer X <xsawyerx@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Sawyer X.
+This software is copyright (c) 2012 by Sawyer X.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
