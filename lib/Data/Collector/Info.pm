@@ -1,12 +1,10 @@
-use strictures 1;
 package Data::Collector::Info;
 {
-  $Data::Collector::Info::VERSION = '0.13';
+  $Data::Collector::Info::VERSION = '0.14';
 }
 # ABSTRACT: A base class for information classes
 
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 use Carp;
@@ -73,7 +71,7 @@ Data::Collector::Info - A base class for information classes
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

@@ -1,7 +1,6 @@
-use strictures 1;
 package Data::Collector::Commands;
 {
-  $Data::Collector::Commands::VERSION = '0.13';
+  $Data::Collector::Commands::VERSION = '0.14';
 }
 # ABSTRACT: A role for commands to be used to collect data
 
@@ -39,7 +38,7 @@ Data::Collector::Commands - A role for commands to be used to collect data
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

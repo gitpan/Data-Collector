@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Serializer::SimpleXML;
 {
-  $Data::Collector::Serializer::SimpleXML::VERSION = '0.13';
+  $Data::Collector::Serializer::SimpleXML::VERSION = '0.14';
 }
 # ABSTRACT: A XML::Simple serializer for Data::Collector
 
 use Moose;
 use XML::Simple;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {
@@ -29,7 +27,7 @@ Data::Collector::Serializer::SimpleXML - A XML::Simple serializer for Data::Coll
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Serializer::DataDumper;
 {
-  $Data::Collector::Serializer::DataDumper::VERSION = '0.13';
+  $Data::Collector::Serializer::DataDumper::VERSION = '0.14';
 }
 # ABSTRACT: A Data::Dumper serializer for Data::Collector
 
 use Data::Dumper;
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {
@@ -29,7 +27,7 @@ Data::Collector::Serializer::DataDumper - A Data::Dumper serializer for Data::Co
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

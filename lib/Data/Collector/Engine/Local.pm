@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Engine::Local;
 {
-  $Data::Collector::Engine::Local::VERSION = '0.13';
+  $Data::Collector::Engine::Local::VERSION = '0.14';
 }
 # ABSTRACT: An engine for Data::Collector that runs local commands
 
 use Moose;
 use IPC::System::Simple 'capture';
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Engine';
@@ -33,7 +31,7 @@ Data::Collector::Engine::Local - An engine for Data::Collector that runs local c
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

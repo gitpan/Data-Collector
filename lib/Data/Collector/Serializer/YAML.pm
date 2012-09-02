@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Serializer::YAML;
 {
-  $Data::Collector::Serializer::YAML::VERSION = '0.13';
+  $Data::Collector::Serializer::YAML::VERSION = '0.14';
 }
 # ABSTRACT: A YAML serializer for Data::Collector
 
 use YAML;
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {
@@ -29,7 +27,7 @@ Data::Collector::Serializer::YAML - A YAML serializer for Data::Collector
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

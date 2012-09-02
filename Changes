@@ -1,12 +1,21 @@
 Revision history for Data-Collector
 
-0.13    29.09.12
+0.14    02.09.12
+        * Clean up merge mess.
+        * Merge stuff from both 0.12 versions.
+          (only update if data changes)
+        * Remove strictures, MooseX::StrictConstructor.
+
+0.13    29.08.12
         * Clean up code.
         * Clean up tests.
 
 0.12    21.08.12
         * Caused some breakaged by not completely copy-pasting stuff.
           (thanks, Peter Sørensen)
+
+0.12    27.03.11
+        * Only update collected data hash if you get data from the info.
 
 0.11    26.09.10
         * Allowing homefolder configuration (~/.data_collector.yaml)

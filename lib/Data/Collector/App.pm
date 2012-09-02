@@ -1,7 +1,6 @@
-use strictures 1;
 package Data::Collector::App;
 {
-  $Data::Collector::App::VERSION = '0.13';
+  $Data::Collector::App::VERSION = '0.14';
 }
 # ABSTRACT: An application implementation for Data::Collector
 
@@ -109,7 +108,7 @@ sub run {
     my $data = $collector->collect;
 
     if ( $self->has_output ) {
-        my $file = $self->output;        
+        my $file = $self->output;
         write_file( $file, $data );
     } else {
         print "$data\n";
@@ -131,7 +130,7 @@ Data::Collector::App - An application implementation for Data::Collector
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

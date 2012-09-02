@@ -25,7 +25,7 @@ my %module_build_args = (
     "Sawyer X <xsawyerx\@cpan.org>"
   ],
   "dist_name" => "Data-Collector",
-  "dist_version" => "0.13",
+  "dist_version" => "0.14",
   "license" => "perl",
   "module_name" => "Data::Collector",
   "recommends" => {},
@@ -45,7 +45,6 @@ my %module_build_args = (
     "Moose::Role" => 0,
     "MooseX::Getopt::Dashes" => 0,
     "MooseX::SimpleConfig" => 0,
-    "MooseX::StrictConstructor" => 0,
     "MooseX::Types::Path::Class" => 0,
     "MooseX::Types::Set::Object" => 0,
     "Net::OpenSSH" => 0,

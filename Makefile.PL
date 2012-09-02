@@ -46,7 +46,6 @@ my %WriteMakefileArgs = (
     "Moose::Role" => 0,
     "MooseX::Getopt::Dashes" => 0,
     "MooseX::SimpleConfig" => 0,
-    "MooseX::StrictConstructor" => 0,
     "MooseX::Types::Path::Class" => 0,
     "MooseX::Types::Set::Object" => 0,
     "Net::OpenSSH" => 0,
@@ -56,7 +55,7 @@ my %WriteMakefileArgs = (
     "namespace::autoclean" => 0,
     "strictures" => 1
   },
-  "VERSION" => "0.13",
+  "VERSION" => "0.14",
   "test" => {
     "TESTS" => "t/*.t t/collector/*.t t/engine/*.t t/info/*.t t/serializers/*.t"
   }

@@ -15,7 +15,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.30
   Module::Build: 0.3601
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300013, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Zilla version 4.300020, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -36,7 +36,6 @@ requires:
   Moose::Role: 0
   MooseX::Getopt::Dashes: 0
   MooseX::SimpleConfig: 0
-  MooseX::StrictConstructor: 0
   MooseX::Types::Path::Class: 0
   MooseX::Types::Set::Object: 0
   Net::OpenSSH: 0
@@ -45,4 +44,4 @@ requires:
   indirect: 0
   namespace::autoclean: 0
   strictures: 1
-version: 0.13
+version: 0.14

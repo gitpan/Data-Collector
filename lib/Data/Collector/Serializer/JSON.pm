@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Serializer::JSON;
 {
-  $Data::Collector::Serializer::JSON::VERSION = '0.13';
+  $Data::Collector::Serializer::JSON::VERSION = '0.14';
 }
 # ABSTRACT: A JSON serializer for Data::Collector
 
 use JSON;
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {
@@ -29,7 +27,7 @@ Data::Collector::Serializer::JSON - A JSON serializer for Data::Collector
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 

@@ -1,12 +1,10 @@
-use strictures 1;
 package Data::Collector::Engine;
 {
-  $Data::Collector::Engine::VERSION = '0.13';
+  $Data::Collector::Engine::VERSION = '0.14';
 }
 # ABSTRACT: A base class for collecting engines
 
 use Moose;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 with 'Data::Collector::Commands';
@@ -54,7 +52,7 @@ Data::Collector::Engine - A base class for collecting engines
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

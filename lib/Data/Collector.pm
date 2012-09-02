@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector;
 {
-  $Data::Collector::VERSION = '0.13';
+  $Data::Collector::VERSION = '0.14';
 }
 # ABSTRACT: Collect information from multiple sources
 
 use Carp;
 use Moose;
-use MooseX::StrictConstructor;
 use MooseX::Types::Set::Object;
 use Module::Pluggable::Object;
 use Class::Load 'try_load_class';
@@ -129,7 +127,7 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    $self->data(
+    %data and $self->data(
         %{ $self->data },
         %data,
     );
@@ -163,7 +161,7 @@ Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

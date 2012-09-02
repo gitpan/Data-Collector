@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Engine::OpenSSH;
 {
-  $Data::Collector::Engine::OpenSSH::VERSION = '0.13';
+  $Data::Collector::Engine::OpenSSH::VERSION = '0.14';
 }
 # ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
 use Moose;
 use Net::OpenSSH;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 extends 'Data::Collector::Engine';
@@ -83,7 +81,7 @@ Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector utilizi
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 SYNOPSIS
 

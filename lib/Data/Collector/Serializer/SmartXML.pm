@@ -1,13 +1,11 @@
-use strictures 1;
 package Data::Collector::Serializer::SmartXML;
 {
-  $Data::Collector::Serializer::SmartXML::VERSION = '0.13';
+  $Data::Collector::Serializer::SmartXML::VERSION = '0.14';
 }
 # ABSTRACT: A XML::Smart serializer for Data::Collector
 
 use Moose;
 use XML::Smart;
-use MooseX::StrictConstructor;
 use namespace::autoclean;
 
 sub serialize {
@@ -35,7 +33,7 @@ Data::Collector::Serializer::SmartXML - A XML::Smart serializer for Data::Collec
 
 =head1 VERSION
 
-version 0.13
+version 0.14
 
 =head1 DESCRIPTION
 
