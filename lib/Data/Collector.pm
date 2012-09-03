@@ -1,6 +1,6 @@
 package Data::Collector;
 {
-  $Data::Collector::VERSION = '0.14';
+  $Data::Collector::VERSION = '0.15';
 }
 # ABSTRACT: Collect information from multiple sources
 
@@ -127,10 +127,10 @@ sub load_info {
 
     my %data = %{ $info->all() };
 
-    %data and $self->data(
+    %data and $self->data( {
         %{ $self->data },
         %data,
-    );
+    } );
 }
 
 sub serialize {
@@ -161,7 +161,7 @@ Data::Collector - Collect information from multiple sources
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

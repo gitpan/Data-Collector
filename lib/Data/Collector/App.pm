@@ -1,6 +1,6 @@
 package Data::Collector::App;
 {
-  $Data::Collector::App::VERSION = '0.14';
+  $Data::Collector::App::VERSION = '0.15';
 }
 # ABSTRACT: An application implementation for Data::Collector
 
@@ -130,7 +130,7 @@ Data::Collector::App - An application implementation for Data::Collector
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

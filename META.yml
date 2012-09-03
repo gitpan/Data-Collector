@@ -44,4 +44,4 @@ requires:
   indirect: 0
   namespace::autoclean: 0
   strictures: 1
-version: 0.14
+version: 0.15

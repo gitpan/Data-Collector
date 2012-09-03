@@ -1,6 +1,6 @@
 package Data::Collector::Serializer::SmartXML;
 {
-  $Data::Collector::Serializer::SmartXML::VERSION = '0.14';
+  $Data::Collector::Serializer::SmartXML::VERSION = '0.15';
 }
 # ABSTRACT: A XML::Smart serializer for Data::Collector
 
@@ -33,7 +33,7 @@ Data::Collector::Serializer::SmartXML - A XML::Smart serializer for Data::Collec
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

@@ -1,6 +1,6 @@
 package Data::Collector::Engine::OpenSSH;
 {
-  $Data::Collector::Engine::OpenSSH::VERSION = '0.14';
+  $Data::Collector::Engine::OpenSSH::VERSION = '0.15';
 }
 # ABSTRACT: An OpenSSH engine for Data::Collector utilizing Net::OpenSSH
 
@@ -81,7 +81,7 @@ Data::Collector::Engine::OpenSSH - An OpenSSH engine for Data::Collector utilizi
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

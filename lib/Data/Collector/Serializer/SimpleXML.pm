@@ -1,6 +1,6 @@
 package Data::Collector::Serializer::SimpleXML;
 {
-  $Data::Collector::Serializer::SimpleXML::VERSION = '0.14';
+  $Data::Collector::Serializer::SimpleXML::VERSION = '0.15';
 }
 # ABSTRACT: A XML::Simple serializer for Data::Collector
 
@@ -27,7 +27,7 @@ Data::Collector::Serializer::SimpleXML - A XML::Simple serializer for Data::Coll
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

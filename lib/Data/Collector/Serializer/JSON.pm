@@ -1,6 +1,6 @@
 package Data::Collector::Serializer::JSON;
 {
-  $Data::Collector::Serializer::JSON::VERSION = '0.14';
+  $Data::Collector::Serializer::JSON::VERSION = '0.15';
 }
 # ABSTRACT: A JSON serializer for Data::Collector
 
@@ -27,7 +27,7 @@ Data::Collector::Serializer::JSON - A JSON serializer for Data::Collector
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

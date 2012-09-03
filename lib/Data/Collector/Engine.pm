@@ -1,6 +1,6 @@
 package Data::Collector::Engine;
 {
-  $Data::Collector::Engine::VERSION = '0.14';
+  $Data::Collector::Engine::VERSION = '0.15';
 }
 # ABSTRACT: A base class for collecting engines
 
@@ -52,7 +52,7 @@ Data::Collector::Engine - A base class for collecting engines
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

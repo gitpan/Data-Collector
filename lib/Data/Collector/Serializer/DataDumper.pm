@@ -1,6 +1,6 @@
 package Data::Collector::Serializer::DataDumper;
 {
-  $Data::Collector::Serializer::DataDumper::VERSION = '0.14';
+  $Data::Collector::Serializer::DataDumper::VERSION = '0.15';
 }
 # ABSTRACT: A Data::Dumper serializer for Data::Collector
 
@@ -27,7 +27,7 @@ Data::Collector::Serializer::DataDumper - A Data::Dumper serializer for Data::Co
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 DESCRIPTION
 

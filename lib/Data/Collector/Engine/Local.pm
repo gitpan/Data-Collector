@@ -1,6 +1,6 @@
 package Data::Collector::Engine::Local;
 {
-  $Data::Collector::Engine::Local::VERSION = '0.14';
+  $Data::Collector::Engine::Local::VERSION = '0.15';
 }
 # ABSTRACT: An engine for Data::Collector that runs local commands
 
@@ -31,7 +31,7 @@ Data::Collector::Engine::Local - An engine for Data::Collector that runs local c
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

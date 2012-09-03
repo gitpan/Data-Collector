@@ -1,6 +1,6 @@
 package Data::Collector::Info;
 {
-  $Data::Collector::Info::VERSION = '0.14';
+  $Data::Collector::Info::VERSION = '0.15';
 }
 # ABSTRACT: A base class for information classes
 
@@ -71,7 +71,7 @@ Data::Collector::Info - A base class for information classes
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

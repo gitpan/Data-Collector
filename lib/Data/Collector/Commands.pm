@@ -1,6 +1,6 @@
 package Data::Collector::Commands;
 {
-  $Data::Collector::Commands::VERSION = '0.14';
+  $Data::Collector::Commands::VERSION = '0.15';
 }
 # ABSTRACT: A role for commands to be used to collect data
 
@@ -38,7 +38,7 @@ Data::Collector::Commands - A role for commands to be used to collect data
 
 =head1 VERSION
 
-version 0.14
+version 0.15
 
 =head1 SYNOPSIS
 

@@ -2,7 +2,7 @@ NAME
     Data::Collector - Collect information from multiple sources
 
 VERSION
-    version 0.14
+    version 0.15
 
 SYNOPSIS
     Data::Collector collects various information from multiple sources and
